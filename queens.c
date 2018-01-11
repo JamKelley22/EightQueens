@@ -6,68 +6,40 @@ const int BOARD_LENGTH = 8;
 const char BLANK_SPACE = '-';
 int QUEENS_PLACED = 0;
 int QUEENS_TO_PLACE = 8;
+int SOLUTIONS_FOUND = 0;
+const int NUM_SOLUTIONS = 92;
 
 /* Function Declaration */
 void printBoard(char a[BOARD_LENGTH][BOARD_LENGTH]);
 void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]);
 bool placeQueen(char board[BOARD_LENGTH][BOARD_LENGTH], int x, int y);
-bool placeAllQueens(char board[BOARD_LENGTH][BOARD_LENGTH], int numQueens);
+bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int x, int y);
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]);
 
 int main(int argc, char *argv[]) {
 	char board[BOARD_LENGTH][BOARD_LENGTH];
 	clearBoard(board);	
-	
+	/*
 	placeQueen(board,1,1);	
 	placeQueen(board,2,4);
 	placeQueen(board,0,7);
-	/*
-	placeAllQueens(board,3);
-	*/
+	queens(board,0,0);
+	*/	
+	placeQueen(board,0,0);
+	placeQueen(board,1,1);
 	printSolution(board);
 	return 0;
 }
 
-
-void printBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
-	int i,j;
-	printf("\n===Printing Current Board===\n");
-	for(i = BOARD_LENGTH - 1; i >= 0; i--) {
-		printf("%d|",i);
-		for(j = 0;  j < BOARD_LENGTH; j++) {
-			printf("%c ",a[i][j]);
-		}
-		if(i == 0) {
-			char character = '_';
-			int pos;
-			
-			printf("\n  ");
-			for(pos = 0; pos < BOARD_LENGTH; pos++) {
-				printf("%c ",character);
-			}
-			character = 'a';	
-			
-			printf("\n  ");
-			for(pos = 0; pos < BOARD_LENGTH; pos++) {
-				printf("%c ",character);
-				character++;
-			}
-		}
-		printf("\n");
-
-	}	
-}
-
-
 void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
-	printf("\n===Clearing Current Board===\n");
+	printf("===Clearing Current Board===\n");
 	for(i = 0; i < BOARD_LENGTH; i++) {
 		for(j = 0;  j < BOARD_LENGTH; j++) {
 			a[i][j] = BLANK_SPACE;			
 		}
 
-	}	
+	}
 }
 
 bool placeQueen(char board[BOARD_LENGTH][BOARD_LENGTH],int x, int y) {
@@ -94,8 +66,26 @@ bool placeQueen(char board[BOARD_LENGTH][BOARD_LENGTH],int x, int y) {
 		if(board[tempX][y] == 'Q')
 			return false;
 	}
-
+	
+	printf("BEGIN DIAGS");
 	/* Check Diagnals for other Queens */	
+	tempX = x;tempY = y;
+	while(tempX >= 0 && tempY >= 0) {
+		if(board[tempX][tempY] == 'Q') {
+			return false;
+		}
+		x--;y--;
+	}	
+	printf("Finish UL");
+	
+	tempX = x;tempY = y;
+	while(tempX < BOARD_LENGTH && tempY < BOARD_LENGTH) {
+		if(board[tempX][tempY] == 'Q') {
+			return false;
+		}
+		x++;y++;
+	}	
+	printf("Finish LR");	
 
 	/* Place Queen Sucessfully */
 	board[x][y] = 'Q';
@@ -104,25 +94,20 @@ bool placeQueen(char board[BOARD_LENGTH][BOARD_LENGTH],int x, int y) {
 	return true;
 }
 
-bool placeAllQueens(char board[BOARD_LENGTH][BOARD_LENGTH], int numQueens) {
-	int x=0,y=0;
-	bool placed;
-	while(QUEENS_PLACED < numQueens) {
-		placed = placeQueen(board,x,y);
-		if(placed) {
-			if(x < BOARD_LENGTH - 1) {
-				x++;
-			}
-			else {
-				if(y < BOARD_LENGTH - 1) {
-					x = 0;y++;
-				}
-				else {
-					return false;
-				}
-			}
+bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int x, int y) {
+	if(x == BOARD_LENGTH) {
+		printSolution(board);
+		return true;
+	}
+	int iY;
+	bool placedQueen = false;
+	for(iY = 0; iY < BOARD_LENGTH; iY++) {
+		if(placeQueen(board,x,iY)) {
+			queens(board,++x,0);
+			return true;
 		}
 	}
+	
 }
 
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
