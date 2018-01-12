@@ -123,6 +123,8 @@ bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int j) {
 int main(int argc, char *argv[]) {
 	char board[BOARD_LENGTH][BOARD_LENGTH];
 	clearBoard(board);	
+	
 	queens(board,0);
+
 	return 0;
 }

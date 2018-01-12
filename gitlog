@@ -1,0 +1,60 @@
+* commit affd062f27545b0bf509908a17d072722a0bb906
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Fri Jan 12 00:58:00 2018 -0600
+| 
+|     SOLVEDgit add *!
+|    
+*   commit 2b31f36d2690c7330ec1c7aa0f1979265d081d62
+|\  Merge: 8752df4 a48cb32
+| | Author: Jameel Kelley <jamkelley22@gmail.com>
+| | Date:   Fri Jan 12 00:36:20 2018 -0600
+| | 
+| |     Merge branch 'master' of http://github.com/JamKelley22/EightQueens
+| |   
+| * commit a48cb323f4a74f12e46f5ee58ac9d09b69079efe
+| | Author: Jameel Kelley <jkelley@iastate.edu>
+| | Date:   Fri Jan 12 00:34:13 2018 -0600
+| | 
+| |     Delete queens
+| |   
+* | commit 8752df4e93e6e43a687fa20896445743dcebcb64
+|/  Author: Jameel Kelley <jamkelley22@gmail.com>
+|   Date:   Fri Jan 12 00:36:05 2018 -0600
+|   
+|       updated gitignore, no more exe uploaded
+|  
+* commit 7825e741bbd07b94a5d78514d7266f0147603abc
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Fri Jan 12 00:32:09 2018 -0600
+| 
+|     Fixed stupid error in attack check, Found one solution sucessfully!
+|  
+* commit 91e68096df08e89335390db44c27123f263cb62b
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Fri Jan 12 00:02:16 2018 -0600
+| 
+|     moved main to bottom & removed function declaration, removed annoying output, changed confusing (x,y) => (i,j), attempt at recursion
+|  
+* commit 7c5c355c2096dc170d1be5d12963c580966c46de
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Thu Jan 11 14:20:44 2018 -0600
+| 
+|     realized my mistake of using cartiesian coordinates...X and Y values are switched now. Attempting tests
+|  
+* commit 9ee6b06f5a17111408177a61d9be93076a06c7db
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Thu Jan 11 13:18:39 2018 -0600
+| 
+|     removed visual print (unnessary and a hassle, began solving diagnals
+|  
+* commit d91aedc06265c12ce320a50206b8fc5f5ac36a5b
+| Author: root <root@coms327-vm.cs.iastate.edu>
+| Date:   Thu Jan 11 01:40:11 2018 -0600
+| 
+|     Basic framework. Manual add Queen, print board in required format
+|  
+* commit 6e1baa1ab396d1298b288d975d69016e8e8ef6bc
+  Author: Jameel Kelley <jkelley@iastate.edu>
+  Date:   Thu Jan 11 01:24:09 2018 -0600
+  
+      Initial commit
