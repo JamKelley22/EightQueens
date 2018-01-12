@@ -6,6 +6,7 @@ const int BOARD_LENGTH = 8;
 const char BLANK_SPACE = '-';
 int QUEENS_PLACED = 0;
 int SOLUTIONS_FOUND = 0;
+const char ATTACK_SPACE = '*';
 
 void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
@@ -68,6 +69,61 @@ bool canBeAttacked(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 
 	return false;
 }
+
+
+
+void markAttacks(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
+	/* Mark Vertical */
+	int tempI;
+	for(tempI = 0; tempI < BOARD_LENGTH; tempI++) {
+		if(board[tempI][j] == BLANK_SPACE)
+			board[tempI][j] = ATTACK_SPACE;
+	}
+
+	/* Check Horizontal for other Queens */	
+	int tempJ;
+	for(tempJ = 0; tempJ < BOARD_LENGTH; tempJ++) {
+		if(board[i][tempJ] == 'Q')
+			return true;
+	}
+	
+	/* Check Diagnals for other Queens */	
+	tempI = i;tempJ = j;
+	while(tempI < BOARD_LENGTH && tempJ < BOARD_LENGTH) {
+		if(board[tempI][tempJ] == 'Q') {
+			return true;
+		}
+		tempI++;tempJ++;
+	}
+	
+	tempI = i;tempJ = j;
+	while(tempI >= 0 && tempJ >= 0) {
+		if(board[tempI][tempJ] == 'Q') {
+			return true;
+		}
+		tempI--;tempJ--;
+	}
+
+	
+	tempI = i;tempJ = j;
+	while(tempI < BOARD_LENGTH && tempJ >= 0) {
+		if(board[tempI][tempJ] == 'Q') {
+			return true;
+		}
+		tempI++;tempJ--;
+	}
+	
+	tempI = i;tempJ = j;
+	while(tempI >= 0 && tempJ > BOARD_LENGTH) {
+		if(board[tempI][tempJ] == 'Q') {
+			return true;
+		}
+		tempI--;tempJ++;
+	}
+
+	return false;
+}
+
 /*
 To be used for Recursive Queen Placment, assumes in bounds and checks for attacks were already made.
 */
