@@ -182,7 +182,7 @@ int main(int argc, char **argv) {
 			SHOW_TIME = true;
 			break;
 		default:
-			printf("Usage: %s [-np]\n", argv[0]);
+			printf("Usage: %s [-npt]\n", argv[0]);
 			return 1;
 		}
 	}
