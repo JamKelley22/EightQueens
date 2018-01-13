@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+#include <unistd.h>
 
 /* Global Var Declaration */
 const int BOARD_LENGTH = 8;
@@ -7,6 +10,8 @@ const char BLANK_SPACE = '-';
 int QUEENS_PLACED = 0;
 int SOLUTIONS_FOUND = 0;
 const char ATTACK_SPACE = '*';
+bool PRETTY_PRINT = false;
+bool NUMBER_LINES = false;
 
 void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
@@ -137,14 +142,8 @@ void removeQueenR(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
-	/*
-	for(i = 0; i < BOARD_LENGTH; i++) {
-		for(j = 0; j < BOARD_LENGTH; j++) {
-			if(board[i][j] == 'Q')
-				printf("(%d,%d) | ", i,j);
-		}
-	}
-	*/
+	if(NUMBER_LINES)
+		printf("%d. ", SOLUTIONS_FOUND);	
 	for(i = 0; i < BOARD_LENGTH; i++) {
 		for(j = 0; j < BOARD_LENGTH; j++) {
 			if(board[i][j] == 'Q') {
@@ -156,11 +155,41 @@ void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	printf("\n");	
 }
 
+void printPrettySolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
+	int i,j;
+	for(i = 0; i < BOARD_LENGTH; i++) {
+		printf("%d|",BOARD_LENGTH - i);
+		for(j = 0; j < BOARD_LENGTH; j++) {
+			printf("%c ",board[i][j]);
+		}
+		if(i == BOARD_LENGTH - 1) {
+			char character = '_';
+			int pos;
+			
+			printf("\n  ");
+			for(pos = 0; pos < BOARD_LENGTH; pos++) {
+				printf("%c ",character);
+			}
+			character = 'a';
+			printf("\n  ");
+			for(pos = 0; pos < BOARD_LENGTH; pos++) {
+				printf("%c ",character);
+				character++;
+			}
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
 bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int j) {
 	/* Base Case */
 	if(j >= BOARD_LENGTH) {
 		SOLUTIONS_FOUND++;
-		printSolution(board); 
+		if(PRETTY_PRINT)
+			printPrettySolution(board); 
+		else 
+			printSolution(board);
 	}
 	
 	int row; /* The i value */
@@ -175,7 +204,31 @@ bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int j) {
 	return false;
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char **argv) {
+	/* 
+	======Switches======
+	Pretty Print Switch = -p
+	Number Lines Switch = -n
+	*/
+
+	/* Get & Parse Args */
+	bool validArgs = true;
+	int opt;
+	while((opt = getopt(argc,argv, "np")) != -1) {
+		switch(opt) {
+		case 'n':
+			NUMBER_LINES = true;
+			break;
+		case 'p':		
+			PRETTY_PRINT = true;
+			break;
+		default:
+			printf("Usage: %s [-np]\n", argv[0]);
+			return 1;
+		}
+	}
+	
+	/* Setup */
 	char board[BOARD_LENGTH][BOARD_LENGTH];
 	clearBoard(board);	
 	
