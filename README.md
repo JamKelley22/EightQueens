@@ -17,6 +17,15 @@ Here is my result of running `gcc --version`
 gcc (GCC) 5.3.1 20151207 (Red Hat 5.3.1-2)
 ...
 
+### Optional Switches
+
+1. -n
+  - Numbers lines that have solutions on them. Use this rather then piping to cat -n (that breaks -t switch)
+2. -p
+  - Pretty output. This prints solutions in a visually recognizable format similar to a chess board
+3. -t
+  - Displays the total time taken in calculating the solutions and printing them to the console
+
 ### Installing
 
 [GCC](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=4&cad=rja&uact=8&ved=0ahUKEwiktIXi6NLYAhWG24MKHaDNDGgQFgg5MAM&url=https%3A%2F%2Fgcc.gnu.org%2Finstall%2F&usg=AOvVaw1x7C-_YwGUezLl2kN8YeqY)
