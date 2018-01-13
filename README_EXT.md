@@ -1,6 +1,7 @@
 # Eight Queens Problem
 
-This program written in C is a solver to the famous 8 Queens problem. The problem entails placing 8 Queens on an 8x8 chess board in such a manor that no two Queens can attack each other. Running the program produces 92 solutions to the problem, however these 92 solutions are simply reflections and rotations of the real number of solutions, which is only 12!
+## Description
+This program, written in C, is a solver to the famous 8 Queens problem. The problem entails placing 8 Queens on an 8x8 chess board in such a manor that no two Queens can attack each other. Running the program produces 92 solutions to the problem, however these 92 solutions are simply reflections and rotations of the real number of solutions, which is only 12!
 
 ## Getting Started
 
@@ -17,7 +18,7 @@ Here is my result of running `gcc --version`
 gcc (GCC) 5.3.1 20151207 (Red Hat 5.3.1-2)
 ...
 
-### Optional Switches
+## Optional Switches
 
 1. -n
   - Numbers lines that have solutions on them. Use this rather then piping to cat -n (that breaks -t switch)
