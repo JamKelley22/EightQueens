@@ -3,16 +3,19 @@
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/time.h>
 
 /* Global Var Declaration */
-const int BOARD_LENGTH = 8;
-const char BLANK_SPACE = '-';
 int QUEENS_PLACED = 0;
 int SOLUTIONS_FOUND = 0;
+const int BOARD_LENGTH = 8;
+const char BLANK_SPACE = '-';
 const char ATTACK_SPACE = '*';
 bool PRETTY_PRINT = false;
 bool NUMBER_LINES = false;
+bool SHOW_TIME = false;
 
+/* Clears board by setting all spaces to BLANK_SPACE char */
 void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
 	for(i = 0; i < BOARD_LENGTH; i++) {
@@ -22,7 +25,8 @@ void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
 
 	}
 }
-
+/* Determines if a space on board can be attacked by another Queen.
+@return true if space is attackable, false otherwise */
 bool canBeAttacked(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 	/* Check Vertical for other Queens */
 	int tempI;
@@ -75,71 +79,20 @@ bool canBeAttacked(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 	return false;
 }
 
-
-
-void markAttacks(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
-	/* Mark Vertical */
-	int tempI;
-	for(tempI = 0; tempI < BOARD_LENGTH; tempI++) {
-		if(board[tempI][j] == BLANK_SPACE)
-			board[tempI][j] = ATTACK_SPACE;
-	}
-
-	/* Check Horizontal for other Queens */	
-	int tempJ;
-	for(tempJ = 0; tempJ < BOARD_LENGTH; tempJ++) {
-		if(board[i][tempJ] == 'Q')
-			return true;
-	}
-	
-	/* Check Diagnals for other Queens */	
-	tempI = i;tempJ = j;
-	while(tempI < BOARD_LENGTH && tempJ < BOARD_LENGTH) {
-		if(board[tempI][tempJ] == 'Q') {
-			return true;
-		}
-		tempI++;tempJ++;
-	}
-	
-	tempI = i;tempJ = j;
-	while(tempI >= 0 && tempJ >= 0) {
-		if(board[tempI][tempJ] == 'Q') {
-			return true;
-		}
-		tempI--;tempJ--;
-	}
-
-	
-	tempI = i;tempJ = j;
-	while(tempI < BOARD_LENGTH && tempJ >= 0) {
-		if(board[tempI][tempJ] == 'Q') {
-			return true;
-		}
-		tempI++;tempJ--;
-	}
-	
-	tempI = i;tempJ = j;
-	while(tempI >= 0 && tempJ > BOARD_LENGTH) {
-		if(board[tempI][tempJ] == 'Q') {
-			return true;
-		}
-		tempI--;tempJ++;
-	}
-
-	return false;
-}
-
 /*
-To be used for Recursive Queen Placment, assumes in bounds and checks for attacks were already made.
+To be used for Recursive Queen placment, assumes in bounds and checks for attacks were already made.
 */
 void placeQueenR(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 	board[i][j] = 'Q';
 }
 
+/*
+To be used for Recursive Queen removal, assumes in bounds and checks for attacks were already made.
+*/
 void removeQueenR(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 	board[i][j] = BLANK_SPACE;
 }
-
+/* Prints out the locations of the Queens on board in required format */
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
 	if(NUMBER_LINES)
@@ -155,6 +108,7 @@ void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	printf("\n");	
 }
 
+/* Prints out a visiual representation of the location of the Queens on board */
 void printPrettySolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
 	for(i = 0; i < BOARD_LENGTH; i++) {
@@ -181,7 +135,8 @@ void printPrettySolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	}
 	printf("\n");
 }
-
+/* Recursive method to solve 8 Queens problem, works from left to right, calling itself when a space is found. 
+@return if the next space column has a viable place for a queen, true. Also true when all 8 Queens are placed. False otherwise */
 bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int j) {
 	/* Base Case */
 	if(j >= BOARD_LENGTH) {
@@ -209,18 +164,22 @@ int main(int argc, char **argv) {
 	======Switches======
 	Pretty Print Switch = -p
 	Number Lines Switch = -n
+	Show Time = -t
 	*/
 
 	/* Get & Parse Args */
 	bool validArgs = true;
 	int opt;
-	while((opt = getopt(argc,argv, "np")) != -1) {
+	while((opt = getopt(argc,argv, "npt")) != -1) {
 		switch(opt) {
 		case 'n':
 			NUMBER_LINES = true;
 			break;
 		case 'p':		
 			PRETTY_PRINT = true;
+			break;
+		case 't':
+			SHOW_TIME = true;
 			break;
 		default:
 			printf("Usage: %s [-np]\n", argv[0]);
@@ -232,7 +191,21 @@ int main(int argc, char **argv) {
 	char board[BOARD_LENGTH][BOARD_LENGTH];
 	clearBoard(board);	
 	
-	queens(board,0);
+	/* Start Timer Stuff */
+	struct timeval t0;
+	struct timeval t1;
+	if(SHOW_TIME) {
+		gettimeofday(&t0,0);
+	}
 
+	queens(board,0);
+	
+	/* End Timer Stuff */
+	if(SHOW_TIME) {
+		gettimeofday(&t1,0);
+		long elapsed = (t1.tv_sec-t0.tv_sec)*1000000 + t1.tv_usec-t0.tv_usec;
+		printf("Found & Printed %d Solutions in %ld Milliseconds\n",SOLUTIONS_FOUND,elapsed / 1000);
+	}
 	return 0;
 }
+
