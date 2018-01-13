@@ -43,3 +43,5 @@ The data sctucture in this program is a 2D Character Matrix which holds infromat
 *Recursive method used to solve the 8 Queens Problem, scanns from left to right, calls itself when a space is found to place a Queen in the next collum
 @return true if the next call of queens returns true or if all Queens have been placed, false otherwise*
 - bool queens(char board[BOARD_LENGTH][BOARD_LENGTH], int j);
+
+Full README in file README_EXT.md
