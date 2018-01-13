@@ -1,9 +1,3 @@
-## Getting Started
-
-1. Download project
-2. Run `gcc -o queens queens.c`
-3. run `./queens`
-
 ## Optional Switches
 
 1. -n
