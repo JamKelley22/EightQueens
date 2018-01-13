@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <sys/time.h>
 
 /* Global Var Declaration */
 const int BOARD_LENGTH = 8;
@@ -136,7 +137,6 @@ void removeQueenR(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 }
 
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
-	printf("===Solution#%d===\n",SOLUTIONS_FOUND);
 	int i,j;
 	/*
 	for(i = 0; i < BOARD_LENGTH; i++) {
@@ -180,7 +180,18 @@ int main(int argc, char *argv[]) {
 	char board[BOARD_LENGTH][BOARD_LENGTH];
 	clearBoard(board);	
 	
+	/* Start Timer Stuff */
+	struct timeval t0;
+	struct timeval t1;
+	gettimeofday(&t0,0);
+	
 	queens(board,0);
 
+	/* End Timer Stuff */
+	gettimeofday(&t1,0);
+	long elapsed = (t1.tv_sec-t0.tv_sec)*1000000 + t1.tv_usec-t0.tv_usec;
+	printf("Found %d Solutions in %ld Milliseconds\n",SOLUTIONS_FOUND,elapsed / 1000);
+	
 	return 0;
 }
+
