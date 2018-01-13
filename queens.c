@@ -16,11 +16,11 @@ bool NUMBER_LINES = false;
 bool SHOW_TIME = false;
 
 /* Clears board by setting all spaces to BLANK_SPACE char */
-void clearBoard(char a[BOARD_LENGTH][BOARD_LENGTH]) {
+void clearBoard(char board[BOARD_LENGTH][BOARD_LENGTH]) {
 	int i,j;
 	for(i = 0; i < BOARD_LENGTH; i++) {
 		for(j = 0;  j < BOARD_LENGTH; j++) {
-			a[i][j] = BLANK_SPACE;			
+			board[i][j] = BLANK_SPACE;			
 		}
 
 	}

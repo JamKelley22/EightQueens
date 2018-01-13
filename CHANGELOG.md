@@ -20,7 +20,57 @@ All notable changes to this project will be documented in this file.
 Begin Git Log
 - - - -
 
-*   commit 7ed9c0ea7b694e087a1a95bd792c1b1fce91bd78 (HEAD -> master, origin/master, origin/HEAD)
+* commit 6a0b88982b4611c26d81428632d1136fcd31af28
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 17:26:16 2018 -0600
+| 
+|     Update README.md
+|     
+|     Trimming
+|  
+* commit d884fc8648eaf1e24c9f2f9e731debe1c9c18165
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 17:15:39 2018 -0600
+| 
+|     Update README.md
+|  
+* commit fccb16be88bf248594c7e0f1347489ddf291d02b
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 17:14:37 2018 -0600
+| 
+|     Update README.md
+|  
+* commit 8f3faeb475df0342726b998d2aefec177e08d6b6
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 17:14:33 2018 -0600
+| 
+|     Update README_EXT.md
+|  
+* commit e0bf2872aeda3a4386e9db18e37749b3a84d5512
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 17:12:25 2018 -0600
+| 
+|     Create README.md
+|  
+* commit 2430cca869e63bbbcbd966f4ce36cdf24b0da4a6
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 16:45:21 2018 -0600
+| 
+|     Update and rename README.md to README_EXT.md
+|  
+* commit aa212bef264b5f8b170545d83291fabe4402b472
+| Author: Jameel Kelley <jkelley@iastate.edu>
+| Date:   Sat Jan 13 16:38:08 2018 -0600
+| 
+|     Update README.md
+|  
+* commit 69f81563db69dab08d6e6868090eafb7c543fb8d
+| Author: Jameel Kelley <jamkelley22@gmail.com>
+| Date:   Sat Jan 13 03:27:40 2018 -0600
+| 
+|     Combined changelogs
+|    
+*   commit 7ed9c0ea7b694e087a1a95bd792c1b1fce91bd78
 |\  Merge: 2645661 8af2ad6
 | | Author: Jameel Kelley <jamkelley22@gmail.com>
 | | Date:   Sat Jan 13 03:05:49 2018 -0600
@@ -47,14 +97,14 @@ Begin Git Log
 |   
 |       Updated switches on bad switch
 |    
-*   commit 1f9475437ee41d94c15cdc359a57daf5b29fec54 (tag: 1.0.0)
+*   commit 1f9475437ee41d94c15cdc359a57daf5b29fec54
 |\  Merge: fa2b805 0f43f5c
 | | Author: Jameel Kelley <jamkelley22@gmail.com>
 | | Date:   Sat Jan 13 02:45:16 2018 -0600
 | | 
 | |     added t switch to keep track of time, commented methods, cleaned up
 | |   
-| * commit 0f43f5cb6fe5fac4ba2c0649061dbdae382c2449 (origin/Timer)
+| * commit 0f43f5cb6fe5fac4ba2c0649061dbdae382c2449
 | | Author: Jameel Kelley <jamkelley22@gmail.com>
 | | Date:   Sat Jan 13 00:10:26 2018 -0600
 | | 
