@@ -136,7 +136,6 @@ void removeQueenR(char board[BOARD_LENGTH][BOARD_LENGTH],int i, int j) {
 }
 
 void printSolution(char board[BOARD_LENGTH][BOARD_LENGTH]) {
-	printf("===Solution#%d===\n",SOLUTIONS_FOUND);
 	int i,j;
 	/*
 	for(i = 0; i < BOARD_LENGTH; i++) {
