@@ -1,18 +1,17 @@
-
 Full README in README_EXT.md
 
-## Optional Switches
+## Switches
 
 1. -n
-  - Numbers lines with solutions. Use this rather then piping to cat -n (breaks -t switch)
+  - Numbers lines with solutions.
 2. -p
   - Pretty output
 3. -t
-  - Displays time in calculating solutions and printing to console
+  - Displays time taken
   
 ## Data Structures
 
-2D Character Matrix holds infromation about Queens on the board. 
+Character Matrix stores Queens on board. 
 * '-' Blank Space
 * 'Q' Queen
 
